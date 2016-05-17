@@ -42,6 +42,9 @@
 		<VirtualTargets>
 			<Add alias="All" targets="default;" />
 		</VirtualTargets>
+		<Compiler>
+			<Add option="-std=gnu++11" />
+		</Compiler>
 		<Unit filename="EditorHookFunctor.cpp" />
 		<Unit filename="EditorHookFunctor.h" />
 		<Unit filename="KRRConfigPanel.cpp" />
