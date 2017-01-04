@@ -8,7 +8,6 @@
 		<Build>
 			<Target title="default">
 				<Option output="../../../devel30/share/CodeBlocks/plugins/KeyRepeatReplace" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="." />
 				<Option object_output="../../../.objs30/plugins/contrib/KeyRepeatReplace" />
 				<Option type="3" />
 				<Option compiler="gcc" />
@@ -31,6 +30,7 @@
 					<Add option="-DWX_PRECOMP" />
 					<Add option="-DwxUSE_UNICODE" />
 					<Add directory="../../../include" />
+					<Add directory="../../../include/tinyxml" />
 					<Add directory="../../../sdk/wxscintilla/include" />
 					<Add directory="$(#wx30.include)" />
 					<Add directory="$(#wx30.lib)/gcc_dll/mswu" />
