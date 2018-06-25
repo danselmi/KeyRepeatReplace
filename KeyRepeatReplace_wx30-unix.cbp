@@ -2,50 +2,54 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="KeyRepeatReplace (Unix)" />
+		<Option title="KeyRepeatReplace wx3.0.x (Unix)" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="default">
-				<Option output="../../../devel/share/codeblocks/plugins/KeyRepeatReplace" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="../../../devel" />
-				<Option object_output="../../../.objs/plugins/contrib/KeyRepeatReplace" />
+				<Option output="../../../devel30/share/codeblocks/plugins/KeyRepeatReplace" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../../../devel30" />
+				<Option object_output="../../../.objs30/plugins/contrib/KeyRepeatReplace" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option parameters="--debug-log --multiple-instance -ns -ni -p debug" />
-				<Option host_application="../../../devel/codeblocks" />
+				<Option host_application="../../../devel30/codeblocks" />
+				<Option run_host_application_in_terminal="0" />
 				<Compiler>
-					<Add option="-g" />
-					<Add option="`wx-config --cflags`" />
-					<Add option="-fmessage-length=0" />
-					<Add option="-fexceptions" />
+					<Add option="-Wall" />
+					<Add option="$(#CB_RELEASE_TYPE)" />
+					<Add option="`$(WX_CONFIG) --cflags`" />
 					<Add option="-Winvalid-pch" />
-					<Add option="-Ulinux" />
-					<Add option="-Uunix" />
-					<Add option="-fPIC" />
-					<Add option="-DcbDEBUG" />
+					<Add option="-fexceptions" />
 					<Add option="-DCB_PRECOMP" />
-					<Add option="-DWX_PRECOMP" />
+					<Add option="-DcbDEBUG" />
 					<Add directory="../../../include" />
 					<Add directory="../../../include/tinyxml" />
 					<Add directory="../../../sdk/wxscintilla/include" />
 				</Compiler>
 				<Linker>
-					<Add option="`wx-config --libs`" />
+					<Add option="`$(WX_CONFIG) --libs`" />
+					<Add option="-Wl,--no-undefined" />
 					<Add library="codeblocks" />
-					<Add directory="../../../devel" />
+					<Add directory="../../../devel30" />
 				</Linker>
 				<ExtraCommands>
-					<Add after="zip -j9 ../../../devel/share/codeblocks/KeyRepeatReplace.zip manifest.xml" />
+					<Add after="zip -j9 ../../../devel30/share/codeblocks/KeyRepeatReplace.zip manifest.xml" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
+			<Environment>
+				<Variable name="WX_CONFIG" value="wx-config --version=3.0" />
+			</Environment>
 		</Build>
 		<VirtualTargets>
 			<Add alias="All" targets="default;" />
 		</VirtualTargets>
 		<Compiler>
-			<Add option="-std=gnu++11" />
+			<Add option="-Wextra" />
+			<Add option="-Wall" />
+			<Add option="-std=c++11" />
+			<Add option="-fPIC" />
 		</Compiler>
 		<Unit filename="EditorHookFunctor.cpp" />
 		<Unit filename="EditorHookFunctor.h" />
