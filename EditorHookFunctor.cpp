@@ -11,6 +11,9 @@
 
 #include <sdk.h> // Code::Blocks SDK
 #include <cbstyledtextctrl.h>
+#include <cbeditor.h>
+#include <editormanager.h>
+#include <editorcolourset.h>
 #include <wx/timer.h>
 
 #include "RepeatReplaceConfig.h"
@@ -76,6 +79,5 @@ void HookFunctor::Call(cbEditor* control, wxScintillaEvent &event)const
     }
     timer.Stop();
 }
-
 
 

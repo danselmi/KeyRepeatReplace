@@ -10,6 +10,9 @@
 #include <sdk.h> // Code::Blocks SDK
 #include "KRRConfigPanel.h"
 #include <wx/listctrl.h>
+#include <editormanager.h>
+#include <editorcolourset.h>
+#include <configmanager.h>
 
 /** Constructor. */
 KeyRepeatReplaceConfigPanel::KeyRepeatReplaceConfigPanel(RepeatReplaceConfig *pConfig,  wxWindow* parent, wxWindowID id):
@@ -142,7 +145,7 @@ void KeyRepeatReplaceConfigPanel::OnTimeChanged( wxSpinEvent& event )
     m_Config.time = event.GetPosition();
 }
 
-void KeyRepeatReplaceConfigPanel::OnChoice( wxCommandEvent& event )
+void KeyRepeatReplaceConfigPanel::OnChoice( wxCommandEvent& /*event*/ )
 {
     UpdateList();
     UpdateField();
@@ -153,15 +156,13 @@ void KeyRepeatReplaceConfigPanel::OnSelect( wxListEvent& event )
 {
     UpdateField(event.GetText()[0]);
 }
-void KeyRepeatReplaceConfigPanel::OnDeselect( wxListEvent& event )
+void KeyRepeatReplaceConfigPanel::OnDeselect( wxListEvent& /*event*/ )
 {
     UpdateField();
 }
 
 void KeyRepeatReplaceConfigPanel::UpdateList()
 {
-    EditorColourSet *cs = Manager::Get()->GetEditorManager()->GetColourSet();
-
     wxString langname = m_pLanguageChoice->GetString(m_pLanguageChoice->GetSelection());
 
     m_pRepeatsListCtrl->ClearAll();
@@ -214,15 +215,15 @@ void KeyRepeatReplaceConfigPanel::UpdateField(wxChar ch)
     }
 }
 
-void KeyRepeatReplaceConfigPanel::OnRemoveButton( wxCommandEvent& event )
+void KeyRepeatReplaceConfigPanel::OnRemoveButton( wxCommandEvent& /*event*/ )
 {
     RemoveSelected();
 }
-void KeyRepeatReplaceConfigPanel::OnRemove( wxListEvent& event )
+void KeyRepeatReplaceConfigPanel::OnRemove( wxListEvent& /*event*/ )
 {
     RemoveSelected();
 }
-void KeyRepeatReplaceConfigPanel::OnColResized( wxListEvent& event )
+void KeyRepeatReplaceConfigPanel::OnColResized( wxListEvent& /*event*/ )
 {
     Manager::Get()->GetConfigManager( _T("KeyRepeatReplace") )->Write( _T("/KeyColumnWidth"), m_pRepeatsListCtrl->GetColumnWidth(0));
     Manager::Get()->GetConfigManager( _T("KeyRepeatReplace") )->Write( _T("/ReplacementColumnWidth"), m_pRepeatsListCtrl->GetColumnWidth(1));
@@ -257,7 +258,6 @@ bool KeyRepeatReplaceConfigPanel::AddOrChangePossible(void)
     if ( m_pTextKey->GetValue().IsEmpty() || m_pTextSubst->GetValue().IsEmpty() ) return false;
 
     wxString langname =  m_pLanguageChoice->GetString(m_pLanguageChoice->GetSelection());
-    wxChar ch = m_pTextKey->GetValue()[0];
 
     // no entries for this lang yet
     if ( m_Config.lmap.find(langname) == m_Config.lmap.end() ) return true;
@@ -272,7 +272,7 @@ void KeyRepeatReplaceConfigPanel::OnUpdateAddOrChange( wxUpdateUIEvent& event )
     event.Enable(AddOrChangePossible());
 }
 
-void KeyRepeatReplaceConfigPanel::OnAddOrChange( wxCommandEvent& event )
+void KeyRepeatReplaceConfigPanel::OnAddOrChange( wxCommandEvent& /*event*/ )
 {
     if ( !AddOrChangePossible() ) return;
 
@@ -324,7 +324,6 @@ void KeyRepeatReplaceConfigPanel::OnCancel()
     // restore original to config-copy data
     m_Config = *m_pConfig;
 }
-
 
 
 

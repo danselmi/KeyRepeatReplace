@@ -10,9 +10,12 @@
 #include "EditorHookFunctor.h"
 
 #include <sdk.h> // Code::Blocks SDK
-
+#include <configmanager.h>
+#include <wx/txtstrm.h>
 #include <wx/sstream.h>
 #include <wx/datstrm.h>
+#include <editormanager.h>
+#include <editorcolourset.h>
 
 #include "RepeatReplaceConfig.h"
 

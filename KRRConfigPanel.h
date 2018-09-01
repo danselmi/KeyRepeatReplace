@@ -10,6 +10,8 @@
 #ifndef KEY_REPEAT_REPLACE_CONF_PANEL_H
 #define KEY_REPEAT_REPLACE_CONF_PANEL_H
 
+#include <wx/listctrl.h>
+#include <wx/spinctrl.h>
 #include <configurationpanel.h>
 #include "EditorHookFunctor.h"
 #include "RepeatReplaceConfig.h"
