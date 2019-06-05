@@ -14,26 +14,25 @@
 				<Option compiler="gcc" />
 				<Option parameters="--debug-log --multiple-instance -ns -ni -p debug" />
 				<Option host_application="../../../devel/codeblocks" />
+				<Option run_host_application_in_terminal="0" />
 				<Compiler>
-					<Add option="-g" />
+					<Add option="-std=c++11" />
+					<Add option="-fPIC" />
+					<Add option="`pkg-config --cflags codeblocks`" />
 					<Add option="`wx-config --cflags`" />
 					<Add option="-fmessage-length=0" />
 					<Add option="-fexceptions" />
 					<Add option="-Winvalid-pch" />
 					<Add option="-Ulinux" />
 					<Add option="-Uunix" />
-					<Add option="-fPIC" />
 					<Add option="-DcbDEBUG" />
 					<Add option="-DCB_PRECOMP" />
 					<Add option="-DWX_PRECOMP" />
-					<Add directory="../../../include" />
-					<Add directory="../../../include/tinyxml" />
-					<Add directory="../../../sdk/wxscintilla/include" />
 				</Compiler>
 				<Linker>
+					<Add option="`pkg-config --libs codeblocks`" />
 					<Add option="`wx-config --libs`" />
 					<Add library="codeblocks" />
-					<Add directory="../../../devel" />
 				</Linker>
 				<ExtraCommands>
 					<Add after="zip -j9 ../../../devel/share/codeblocks/KeyRepeatReplace.zip manifest.xml" />
